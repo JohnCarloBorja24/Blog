@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>John Carlo Borja | College Life Blog</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome for Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <style>
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      display: block;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+      transition: color 0.3s;
+    }
+    a:hover,
+    a:focus {
+      color: var(--accent-hover);
+      outline: none;
+    }
+
+    /* Variables for Light & Dark Mode */
+    :root {
+      --bg: #ffffff;
+      --text: #111111;
+      --text-secondary: #444444;
+      --accent: #e74c3c; /* Adapted primary accent */
+      --accent-hover: #c0392b;
+      --nav-bg: #f9f9f9;
+      --card-bg: #fefefe;
+      --shadow: rgba(0,0,0,0.1);
+      --border: #ddd;
+      --btn-bg: var(--accent);
+      --btn-color: #fff;
+      --btn-hover-bg: #c0392b;
+      --code-bg: #f5f5f5;
+      --container-max-width: 900px;
+    }
+    body.dark {
+      --bg: #121212;
+      --text: #e0e0e0;
+      --text-secondary: #a0a0a0;
+      --accent: #e74c3c;
+      --accent-hover: #c0392b;
+      --nav-bg: #1f1f1f;
+      --card-bg: #1e1e1e;
+      --shadow: rgba(0,0,0,0.7);
+      --border: #333;
+      --btn-bg: var(--accent);
+      --btn-color: #111;
+      --btn-hover-bg: #c0392b;
+      --code-bg: #2c2c2c;
+    }
+
+    /* Container & Layout */
+    .container {
+      max-width: var(--container-max-width);
+      margin: 0 auto;
+      padding: 0 1rem 3rem;
+    }
+
+    /* Navigation */
+    header {
+      background-color: var(--nav-bg);
+      box-shadow: 0 2px 5px var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center; /* vertical center fixes */
+      max-width: var(--container-max-width);
+      margin: 0 auto;
+      padding: 1rem;
+      position: relative; /* for logo centering on mobile */
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      cursor: default;
+      user-select: none;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin-left: auto; /* push nav right */
+    }
+    .nav-links a {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    /* Mobile Navigation Toggle */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      width: 28px;
+      height: 22px;
+      justify-content: space-between;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1100;
+    }
+    .menu-toggle span {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background-color: var(--accent);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    /* Responsive navigation */
+    @media (max-width: 720px) {
+      .menu-toggle {
+        display: flex;
+      }
+
+      /* Center the logo horizontally */
+      .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      /* nav-links slide from right */
+      .nav-links {
+        position: fixed;
+        top: 60px;
+        right: 0;
+        height: calc(100% - 60px);
+        width: 220px;
+        background-color: var(--nav-bg);
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+        box-shadow: -2px 0 10px var(--shadow);
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        z-index: 1000;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+    }
+
+    /* Dark Mode Toggle Button */
+    .dark-mode-toggle {
+      background: var(--btn-bg);
+      color: var(--btn-color);
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-size: 0.9rem;
+      user-select: none;
+      margin-left: 1rem;
+      flex-shrink: 0;
+    }
+    .dark-mode-toggle:hover,
+    .dark-mode-toggle:focus {
+      background-color: var(--btn-hover-bg);
+      outline: none;
+    }
+
+    /* Main Content and Article */
+    main {
+      margin-top: 2rem;
+    }
+
+    article {
+      background-color: var(--card-bg);
+      box-shadow: 0 2px 8px var(--shadow);
+      border-radius: 12px;
+      overflow: hidden;
+      padding: 2rem;
+      margin-bottom: 3rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    article h1, article h2, article h3 {
+      font-weight: 700;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: var(--accent);
+    }
+    article h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    article p {
+      font-weight: 400;
+      margin-bottom: 1rem;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 100%;
+      line-height: 1.7;
+    }
+    article p strong {
+      color: var(--text);
+    }
+    article ul {
+      list-style: disc inside;
+      margin-bottom: 1rem;
+      color: var(--text-secondary);
+    }
+    article ul li {
+      margin-bottom: 0.5rem;
+    }
+    article img {
+      margin: 1.5rem 0;
+      border-radius: 12px;
+    }
+
+    /* Centered Hero text */
+    #home article {
+      text-align: center;
+    }
+    #home article p {
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Typography - Bold sections */
+    .highlight {
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* Calls to Action */
+    .cta {
+      margin: 2rem 0 0;
+      text-align: center;
+    }
+    .btn {
+      background: var(--btn-bg);
+      color: var(--btn-color);
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 10px var(--shadow);
+      user-select: none;
+    }
+    .btn:hover,
+    .btn:focus {
+      background-color: var(--btn-hover-bg);
+      outline: none;
+      box-shadow: 0 6px 12px var(--shadow);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    /* Interactive Elements - Poll */
+    .poll {
+      background-color: var(--bg);
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
+      margin-top: 2rem;
+      max-width: 450px;
+      user-select: none;
+    }
+    .poll h3, .poll h4 {
+      margin: 0 0 1rem;
+      color: var(--accent);
+    }
+    .poll label, .poll .poll-option label {
+      display: block;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .poll input[type="radio"] {
+      margin-right: 0.7rem;
+      cursor: pointer;
+    }
+    .poll button {
+      margin-top: 1rem;
+      background-color: var(--btn-bg);
+      color: var(--btn-color);
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    .poll button:hover,
+    .poll button:focus {
+      background-color: var(--btn-hover-bg);
+      outline: none;
+    }
+    .poll .result {
+      margin-top: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* Typography for code snippets */
+    pre {
+      background-color: var(--code-bg);
+      color: var(--text);
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Responsive fixes for images inside posts */
+    .post-image {
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      width: 100%;
+      height: auto;
+    }
+
+    /* Responsive Grid for main content */
+    .main-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    @media(min-width: 900px) {
+      .main-content {
+        grid-template-columns: 2fr 1fr;
+      }
+    }
+
+    /* Sidebar styles */
+    aside.sidebar {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px var(--shadow);
+      position: sticky;
+      top: 80px;
+      height: fit-content;
+    }
+    .sidebar-widget + .sidebar-widget {
+      margin-top: 2rem;
+    }
+    .sidebar-widget h3 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    /* Subscription form inside .sidebar-widget */
+    form input[type="email"] {
+      font-size: 1rem;
+      padding: 0.6rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+    form button {
+      width: 100%;
+    }
+
+    /* Social links */
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .social-links a {
+      background-color: var(--accent);
+      color: var(--btn-color);
+      padding: 0.6rem 0.8rem;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    .social-links a:hover {
+      background-color: var(--accent-hover);
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <nav role="navigation" aria-label="Main navigation">
+      <div class="logo" tabindex="0">John Carlo Borja</div>
+
+      <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links" id="primary-menu">
+        <li><a href="#home" tabindex="0">Home</a></li>
+        <li><a href="#about" tabindex="0">About</a></li>
+        <li><a href="#blog" tabindex="0">Blog</a></li>
+        <li><a href="#contact" tabindex="0">Contact</a></li>
+      </ul>
+
+      <button class="dark-mode-toggle" aria-label="Toggle dark mode" tabindex="0">Dark Mode</button>
+    </nav>
+  </header>
+
+  <main class="container main-content">
+    <section id="home" tabindex="0" aria-label="Hero Section">
+      <article class="blog-post">
+        <h1>Life as a Filipino College Student</h1>
+        <p>Follow my journey through college life with all its challenges, growth, and memorable moments.</p>
+        <div class="cta">
+          <a href="#subscribe" class="btn">Subscribe to My Blog</a>
+        </div>
+      </article>
+    </section>
+
+    <section id="blog" tabindex="0" aria-label="Blog Articles">
+      <article class="blog-post" aria-label="Blog post: COME TO SCHOOL WITH ME!">
+        <h2>COME TO SCHOOL WITH ME!</h2>
+        <p><em><i class="far fa-calendar"></i> May 5, 2025</em> &nbsp; &nbsp; <em><i class="far fa-user"></i> John Carlo Borja</em> &nbsp; &nbsp; <em><i class="far fa-folder"></i> College Life</em></p>
+
+        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=900&q=80" alt="College campus scene with students" loading="lazy" />
+
+        <p>Hello, dear readers! Today, I want to give you a glimpse into my daily life as a Filipino college student. Lately, things have been quite stressful and exhausting, but sharing my experiences with you helps me stay grounded—and hopefully, it will resonate with some of you too.</p>
+        <h3>My Morning Routine: Starting Early Despite the Challenges</h3>
+        <p>I usually have afternoon classes starting at 1 PM. Sometimes, I struggle to wake up early because of staying up late either working on assignments or just fixing things around my schedule. But even on those rough nights, I manage to get up around 7 AM.</p>
+        <p>My mornings are pretty simple, but I want to share this little routine with you: first thing after waking up, I drink a glass of water to refresh myself. Then, I do some light exercises to get energized. After that, I check my group chats for any announcements from my professors or classmates.</p>
+        <p>Breakfast varies—it depends on my mood and energy. Sometimes I cook at home, but often I buy breakfast from the many street vendors near our place. It's convenient and affordable, especially on days when I feel too tired to cook.</p>
+
+        <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=900&q=80" alt="Student preparing for school" loading="lazy" />
+
+        <h3>Preparing for School: Small Essentials and Big Decisions</h3>
+        <p>Getting ready for school always takes a bit of mental prep too. I carefully pick my outfit for the day—usually something comfortable because sweating is inevitable under the sun and with all the walking involved.</p>
+        <p>My usual commute involves a walk to the HBC jeepney stop, which takes me directly to TCU. This walk doubles as part of my exercise, so I don't mind it. In my bag, I keep the essentials: a pen, extra clothes, and handkerchiefs to wipe off sweat. Staying hydrated and bringing a small fan during the hot midday classes is a must!</p>
+
+        <div class="poll" role="form" aria-live="polite" aria-atomic="true" aria-relevant="text" aria-describedby="poll-desc" tabindex="0">
+          <h3 id="poll-desc">What's in your school bag?</h3>
+          <label>
+            <input type="radio" name="school-bag" value="basics" />
+            Just the basics (notebooks, pens)
+          </label>
+          <label>
+            <input type="radio" name="school-bag" value="everything" />
+            Everything including laptop, tablet, etc.
+          </label>
+          <label>
+            <input type="radio" name="school-bag" value="minimal" />
+            Minimal - I prefer digital notes
+          </label>
+          <label>
+            <input type="radio" name="school-bag" value="survival-kit" />
+            Survival kit (food, extra clothes, umbrella)
+          </label>
+          <button id="poll-submit" aria-controls="poll-results">Vote</button>
+          <p id="poll-results" class="result" aria-live="polite"></p>
+        </div>
+
+        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80" alt="Students socializing at campus" loading="lazy" />
+
+        <h3>At School: Learning, Socializing, and Self-Reflection</h3>
+        <p>I often arrive at school before 1 PM, giving me some time to catch up with classmates. Socializing helps me decompress and maintain balance during the hectic semester.</p>
+        <p>Before class starts, if I'm unsure about the lesson topic, I make it a point to review it quickly so I can participate confidently during recitations. Although I sometimes mix up my thoughts—especially when speaking in English—our professors are always supportive and never put too much pressure on us. This creates a fun and relaxed learning environment.</p>
+        <p>What I truly appreciate is how our professors encourage us to reflect on ourselves. Their advice often hits home, inspiring me to improve not only academically but also in personal decisions and choices.</p>
+      </article>
+    </section>
+
+    <aside class="sidebar" aria-label="Sidebar with subscription and social links">
+      <section id="subscribe" class="sidebar-widget" tabindex="0" aria-label="Subscribe Section">
+        <h3>Stay Updated!</h3>
+        <p>Subscribe to my newsletter to get the latest articles and insights delivered straight to your inbox.</p>
+        <form id="subscribe-form" aria-label="Subscription form" action="#" method="post" novalidate>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Your email address"
+            required
+            aria-required="true"
+            aria-label="Email address"
+          />
+          <button class="btn" type="submit">Subscribe</button>
+        </form>
+        <p id="subscribe-msg" role="alert" style="margin-top: 1rem; font-weight: 700; color: var(--accent); display:none;"></p>
+      </section>
+
+      <section class="sidebar-widget" aria-label="About Me Section" tabindex="0">
+        <h3>About Me</h3>
+        <p>Hi! I'm John Carlo Borja, sharing my life as a Filipino college student — exploring challenges, growth, and memorable moments with you.</p>
+      </section>
+
+      <section class="sidebar-widget" aria-label="Social Media Links" tabindex="0">
+        <h3>Connect with me</h3>
+        <div class="social-links">
+          <a href="https://www.facebook.com/carl.borja.5855" target="_blank" rel="noopener noreferrer" aria-label="Facebook" tabindex="0"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter" tabindex="0"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/jc.borja_24?igsh=MWtzcmVlYWNwMzB2bQ==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" tabindex="0"><i class="fab fa-instagram"></i></a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" tabindex="0"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </section>
+    </aside>
+
+    <section id="about" tabindex="0" aria-label="About Section">
+      <article>
+        <h2>About This Blog</h2>
+        <p>This blog is a reflection of my journey through college life and everything that comes with it — full of challenges, growth, and unforgettable moments.</p>
+      </article>
+    </section>
+
+    <section id="contact" tabindex="0" aria-label="Contact Section">
+      <article>
+        <h2>Get in Touch</h2>
+        <p>If you have questions, suggestions, or want to collaborate, please reach out!</p>
+        <address>
+          Email: <a href="gmail.com:johncarloborja24@gmail.com" tabindex="0">johncarloborja24@gmail.com</a><br />
+          Twitter: <a href="https://twitter.com/johncarlo" target="_blank" rel="noopener noreferrer" tabindex="0">@JohnCarlo</a>
+        </address>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 John Carlo Borja. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    // Dark mode toggle
+    const darkModeToggle = document.querySelector('.dark-mode-toggle');
+    const body = document.body;
+
+    // Load saved theme preference
+    if(localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark');
+      darkModeToggle.textContent = 'Light Mode';
+    }
+
+    darkModeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      if(body.classList.contains('dark')) {
+        darkModeToggle.textContent = 'Light Mode';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        darkModeToggle.textContent = 'Dark Mode';
+        localStorage.setItem('theme', 'light');
+      }
+    });
+
+    // Poll interaction
+    const poll = document.querySelector('.poll');
+    if (poll) {
+      const pollSubmit = poll.querySelector('#poll-submit');
+      const pollResult = poll.querySelector('#poll-results');
+      let pollAnswered = false;
+
+      pollSubmit.addEventListener('click', (e) => {
+        e.preventDefault();
+        if(pollAnswered) {
+          pollResult.textContent = "You have already voted, thank you!";
+          return;
+        }
+        const selected = poll.querySelector('input[name="school-bag"]:checked');
+        if(!selected) {
+          pollResult.textContent = "Please select an option before submitting.";
+          return;
+        }
+        pollResult.textContent = `Thanks for voting for "${selected.parentElement.textContent.trim()}"!`;
+        pollAnswered = true;
+        pollSubmit.disabled = true;
+      });
+    }
+
+    // Subscription form
+    const subscribeForm = document.getElementById('subscribe-form');
+    const subscribeMsg = document.getElementById('subscribe-msg');
+
+    subscribeForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const emailInput = subscribeForm.email.value.trim();
+
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if(!emailPattern.test(emailInput)) {
+        subscribeMsg.style.color = 'red';
+        subscribeMsg.textContent = 'Please enter a valid email address.';
+        subscribeMsg.style.display = 'block';
+        return;
+      }
+
+      subscribeMsg.style.color = 'var(--accent)';
+      subscribeMsg.textContent = 'Thank you for subscribing!';
+      subscribeMsg.style.display = 'block';
+      subscribeForm.reset();
+    });
+  </script>
+</body>
+</html>
