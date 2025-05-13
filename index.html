@@ -54,8 +54,8 @@
     /* Variables for Light & Dark Mode */
     :root {
       --bg: #ffffff;
-      --text: #222222; /* softened from #111 */
-      --text-secondary: #555555; /* softened */
+      --text: #111111;
+      --text-secondary: #444444;
       --accent: #e74c3c; /* Adapted primary accent */
       --accent-hover: #c0392b;
       --nav-bg: #f9f9f9;
@@ -70,7 +70,7 @@
     }
     body.dark {
       --bg: #121212;
-      --text: #dcdcdc; /* softer white */
+      --text: #e0e0e0;
       --text-secondary: #a0a0a0;
       --accent: #e74c3c;
       --accent-hover: #c0392b;
@@ -97,7 +97,7 @@
       box-shadow: 0 2px 5px var(--shadow);
       position: sticky;
       top: 0;
-      z-index: 2000; /* Increased z-index to be sure nav is on top */
+      z-index: 1000;
     }
     nav {
       display: flex;
@@ -107,7 +107,6 @@
       margin: 0 auto;
       padding: 1rem;
       position: relative; /* for logo centering on mobile */
-      gap: 0.75rem;
     }
     .logo {
       font-weight: 700;
@@ -116,12 +115,6 @@
       color: var(--accent);
       cursor: default;
       user-select: none;
-
-      white-space: nowrap; /* Prevent line breaks */
-      max-width: 180px; /* limit width on small devices */
-      overflow: hidden;
-      text-overflow: ellipsis;
-      flex-shrink: 0;
     }
     .nav-links {
       list-style: none;
@@ -146,7 +139,6 @@
       cursor: pointer;
       padding: 0;
       z-index: 1100;
-      flex-shrink: 0;
     }
     .menu-toggle span {
       display: block;
@@ -159,9 +151,6 @@
 
     /* Responsive navigation */
     @media (max-width: 720px) {
-      nav {
-        gap: 0.5rem;
-      }
       .menu-toggle {
         display: flex;
       }
@@ -171,8 +160,6 @@
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        max-width: 60vw; /* responsive max width */
-        font-size: 1.25rem; /* slightly smaller on small screens */
       }
 
       /* nav-links slide from right */
@@ -189,23 +176,10 @@
         box-shadow: -2px 0 10px var(--shadow);
         transform: translateX(100%);
         transition: transform 0.3s ease;
-        z-index: 1500;
+        z-index: 1000;
       }
       .nav-links.active {
         transform: translateX(0);
-      }
-
-      /* Adjust nav-link font size for smaller screens */
-      .nav-links a {
-        font-size: 1rem;
-        white-space: nowrap;
-      }
-
-      /* Ensure dark mode toggle stays visible and aligned */
-      .dark-mode-toggle {
-        margin-left: 0.5rem;
-        font-size: 0.9rem;
-        flex-shrink: 0;
       }
     }
 
@@ -223,9 +197,6 @@
       user-select: none;
       margin-left: 1rem;
       flex-shrink: 0;
-      white-space: nowrap;
-      min-width: 90px;
-      text-align: center;
     }
     .dark-mode-toggle:hover,
     .dark-mode-toggle:focus {
@@ -411,24 +382,13 @@
       }
     }
 
-    /* Sidebar styles */
-    aside.sidebar {
-      background-color: var(--card-bg);
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 2px 8px var(--shadow);
-      position: sticky;
-      top: 80px;
-      height: fit-content;
-      /* fix possible overlay problem */
-      z-index: 1000;
-    }
+ 
     .sidebar-widget + .sidebar-widget {
-      margin-top: 2rem;
+      margin-top: 3rem;
     }
     .sidebar-widget h3 {
       color: var(--accent);
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
       font-weight: 700;
     }
 
@@ -462,20 +422,6 @@
     }
     .social-links a:hover {
       background-color: var(--accent-hover);
-    }
-
-    /* Fix for sticky sidebar on smaller devices that might block nav */
-    @media(max-width: 720px) {
-      aside.sidebar {
-        position: static;
-        top: auto;
-        margin-top: 2rem;
-      }
-
-      /* Add bottom margin to main content so nav links remain clickable */
-      main.container.main-content {
-        padding-bottom: 4rem;
-      }
     }
 
   </style>
@@ -520,7 +466,7 @@
 
         <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=900&q=80" alt="College campus scene with students" loading="lazy" />
 
-        <p>Hello, dear readers! Today, I want to give you a glimpse into my daily life as a college student. Lately, things have been quite stressful and exhausting, but sharing my experiences with you helps me stay grounded—and hopefully, it will resonate with some of you too.</p>
+        <p>Hello, dear readers! Today, I want to give you a glimpse into my daily life as a Filipino college student. Lately, things have been quite stressful and exhausting, but sharing my experiences with you helps me stay grounded—and hopefully, it will resonate with some of you too.</p>
         <h3>My Morning Routine: Starting Early Despite the Challenges</h3>
         <p>I usually have afternoon classes starting at 1 PM. Sometimes, I struggle to wake up early because of staying up late either working on assignments or just fixing things around my schedule. But even on those rough nights, I manage to get up around 7 AM.</p>
         <p>My mornings are pretty simple, but I want to share this little routine with you: first thing after waking up, I drink a glass of water to refresh myself. Then, I do some light exercises to get energized. After that, I check my group chats for any announcements from my professors or classmates.</p>
@@ -556,29 +502,75 @@
 
         <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80" alt="Students socializing at campus" loading="lazy" />
 
-        <h3>At School: Learning, 
-
-        <!-- Add rest of your blog post content here -->
+        <h3>At School: Learning, Socializing, and Self-Reflection</h3>
+        <p>I often arrive at school before 1 PM, giving me some time to catch up with classmates. Socializing helps me decompress and maintain balance during the hectic semester.</p>
+        <p>Before class starts, if I'm unsure about the lesson topic, I make it a point to review it quickly so I can participate confidently during recitations. Although I sometimes mix up my thoughts—especially when speaking in English—our professors are always supportive and never put too much pressure on us. This creates a fun and relaxed learning environment.</p>
+        <p>What I truly appreciate is how our professors encourage us to reflect on ourselves. Their advice often hits home, inspiring me to improve not only academically but also in personal decisions and choices.</p>
       </article>
     </section>
 
-    <!-- Example aside using your sidebar class so it is styled -->
-    <aside class="sidebar" aria-label="Sidebar with subscription and updates">
-      <div class="sidebar-widget" id="subscribe">
+    <aside class="sidebar" aria-label="Sidebar with subscription and social links">
+      <article>
+      <section id="subscribe" class="sidebar-widget" tabindex="0" aria-label="Subscribe Section">
         <h3>Stay Updated!</h3>
-        <form>
-          <input type="email" placeholder="Enter your email" aria-label="Email address" required />
-          <button type="submit">Subscribe</button>
+        <p>Subscribe to my newsletter to get the latest articles and insights delivered straight to your inbox.</p>
+        <form id="subscribe-form" aria-label="Subscription form" action="#" method="post" novalidate>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Your email address"
+            required
+            aria-required="true"
+            aria-label="Email address"
+          />
+          <button class="btn" type="submit">Subscribe</button>
         </form>
-      </div>
-      <!-- More widgets can go here -->
+        <p id="subscribe-msg" role="alert" style="margin-top: 1rem; font-weight: 700; color: var(--accent); display:none;"></p>
+      </section>
+
+      <section class="sidebar-widget" aria-label="About Me Section" tabindex="0">
+        <h3>About Me</h3>
+        <p>Hi! I'm John Carlo Borja, sharing my life as a Filipino college student — exploring challenges, growth, and memorable moments with you.</p>
+      </section>
+
+      <section class="sidebar-widget" aria-label="Social Media Links" tabindex="0">
+        <h3>Connect with me</h3>
+        <div class="social-links">
+          <a href="https://www.facebook.com/carl.borja.5855" target="_blank" rel="noopener noreferrer" aria-label="Facebook" tabindex="0"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter" tabindex="0"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/jc.borja_24?igsh=MWtzcmVlYWNwMzB2bQ==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" tabindex="0"><i class="fab fa-instagram"></i></a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" tabindex="0"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        </article>
+      </section>
     </aside>
+
+    <section id="about" tabindex="0" aria-label="About Section">
+      <article>
+        <h2>About This Blog</h2>
+        <p>This blog is a reflection of my journey through college life and everything that comes with it — full of challenges, growth, and unforgettable moments.</p>
+      </article>
+    </section>
+
+    <section id="contact" tabindex="0" aria-label="Contact Section">
+      <article>
+        <h2>Get in Touch</h2>
+        <p>If you have questions, suggestions, or want to collaborate, please reach out!</p>
+        <address>
+          Email: <a href="gmail.com:johncarloborja24@gmail.com" tabindex="0">johncarloborja24@gmail.com</a><br />
+          Twitter: <a href="https://twitter.com/johncarlo" target="_blank" rel="noopener noreferrer" tabindex="0">@JohnCarlo</a>
+        </address>
+      </article>
+    </section>
   </main>
 
-  <!-- You may add footer here -->
+  <footer>
+    <p>&copy; 2025 John Carlo Borja. All rights reserved.</p>
+  </footer>
 
   <script>
-    // Mobile menu toggle script
+    // Mobile nav toggle
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
 
@@ -588,10 +580,71 @@
       navLinks.classList.toggle('active');
     });
 
-    // Dark mode toggle script
+    // Dark mode toggle
     const darkModeToggle = document.querySelector('.dark-mode-toggle');
+    const body = document.body;
+
+    // Load saved theme preference
+    if(localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark');
+      darkModeToggle.textContent = 'Light Mode';
+    }
+
     darkModeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
+      body.classList.toggle('dark');
+      if(body.classList.contains('dark')) {
+        darkModeToggle.textContent = 'Light Mode';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        darkModeToggle.textContent = 'Dark Mode';
+        localStorage.setItem('theme', 'light');
+      }
+    });
+
+    // Poll interaction
+    const poll = document.querySelector('.poll');
+    if (poll) {
+      const pollSubmit = poll.querySelector('#poll-submit');
+      const pollResult = poll.querySelector('#poll-results');
+      let pollAnswered = false;
+
+      pollSubmit.addEventListener('click', (e) => {
+        e.preventDefault();
+        if(pollAnswered) {
+          pollResult.textContent = "You have already voted, thank you!";
+          return;
+        }
+        const selected = poll.querySelector('input[name="school-bag"]:checked');
+        if(!selected) {
+          pollResult.textContent = "Please select an option before submitting.";
+          return;
+        }
+        pollResult.textContent = `Thanks for voting for "${selected.parentElement.textContent.trim()}"!`;
+        pollAnswered = true;
+        pollSubmit.disabled = true;
+      });
+    }
+
+    // Subscription form
+    const subscribeForm = document.getElementById('subscribe-form');
+    const subscribeMsg = document.getElementById('subscribe-msg');
+
+    subscribeForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const emailInput = subscribeForm.email.value.trim();
+
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if(!emailPattern.test(emailInput)) {
+        subscribeMsg.style.color = 'red';
+        subscribeMsg.textContent = 'Please enter a valid email address.';
+        subscribeMsg.style.display = 'block';
+        return;
+      }
+
+      subscribeMsg.style.color = 'var(--accent)';
+      subscribeMsg.textContent = 'Thank you for subscribing!';
+      subscribeMsg.style.display = 'block';
+      subscribeForm.reset();
     });
   </script>
 </body>
