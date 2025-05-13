@@ -3,215 +3,596 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Purpose and Growth in the BPO Industry</title>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet" />
+  <title>John Carlo Borja | College Life Blog</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome for Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
   <style>
-    /* Reset and basics */
-    * {
+    /* Reset & Base */
+    *, *::before, *::after {
       box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
     }
     body {
       margin: 0;
-      background: #f9f6f2;
-      color: #1f2a44;
-      font-family: 'Open Sans', sans-serif;
-      line-height: 1.7;
-      font-size: 18px;
-      padding: 40px 20px;
-      display: flex;
-      justify-content: center;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
-    main {
-      max-width: 800px;
-      background: #fff;
-      padding: 40px 50px 60px 50px;
-      border-radius: 12px;
-      box-shadow: 0 8px 16px rgba(31, 42, 68, 0.1);
-      display: flex;
-      flex-direction: column;
-      gap: 50px;
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      display: block;
     }
-    /* Hero Section */
-    .hero {
-      text-align: center;
-      padding-bottom: 20px;
-      border-bottom: 1px solid #e6e4e1;
-    }
-    .hero h1 {
-      font-family: 'Merriweather', serif;
+    a {
+      color: var(--accent);
+      text-decoration: none;
       font-weight: 700;
-      font-size: 3.2rem;
-      margin-bottom: 0.5rem;
-      color: #123456;
-      line-height: 1.1;
+      transition: color 0.3s;
     }
-    .hero p {
-      font-size: 1.25rem;
-      color: #4a5f7a;
-      margin-bottom: 1.8rem;
-      max-width: 650px;
+    a:hover,
+    a:focus {
+      color: var(--accent-hover);
+      outline: none;
+    }
+
+    /* Variables for Light & Dark Mode */
+    :root {
+      --bg: #ffffff;
+      --text: #222222; /* softened from #111 */
+      --text-secondary: #555555; /* softened */
+      --accent: #e74c3c; /* Adapted primary accent */
+      --accent-hover: #c0392b;
+      --nav-bg: #f9f9f9;
+      --card-bg: #fefefe;
+      --shadow: rgba(0,0,0,0.1);
+      --border: #ddd;
+      --btn-bg: var(--accent);
+      --btn-color: #fff;
+      --btn-hover-bg: #c0392b;
+      --code-bg: #f5f5f5;
+      --container-max-width: 900px;
+    }
+    body.dark {
+      --bg: #121212;
+      --text: #dcdcdc; /* softer white */
+      --text-secondary: #a0a0a0;
+      --accent: #e74c3c;
+      --accent-hover: #c0392b;
+      --nav-bg: #1f1f1f;
+      --card-bg: #1e1e1e;
+      --shadow: rgba(0,0,0,0.7);
+      --border: #333;
+      --btn-bg: var(--accent);
+      --btn-color: #111;
+      --btn-hover-bg: #c0392b;
+      --code-bg: #2c2c2c;
+    }
+
+    /* Container & Layout */
+    .container {
+      max-width: var(--container-max-width);
+      margin: 0 auto;
+      padding: 0 1rem 3rem;
+    }
+
+    /* Navigation */
+    header {
+      background-color: var(--nav-bg);
+      box-shadow: 0 2px 5px var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 2000; /* Increased z-index to be sure nav is on top */
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center; /* vertical center fixes */
+      max-width: var(--container-max-width);
+      margin: 0 auto;
+      padding: 1rem;
+      position: relative; /* for logo centering on mobile */
+      gap: 0.75rem;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      cursor: default;
+      user-select: none;
+
+      white-space: nowrap; /* Prevent line breaks */
+      max-width: 180px; /* limit width on small devices */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex-shrink: 0;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin-left: auto; /* push nav right */
+    }
+    .nav-links a {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    /* Mobile Navigation Toggle */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      width: 28px;
+      height: 22px;
+      justify-content: space-between;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1100;
+      flex-shrink: 0;
+    }
+    .menu-toggle span {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background-color: var(--accent);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    /* Responsive navigation */
+    @media (max-width: 720px) {
+      nav {
+        gap: 0.5rem;
+      }
+      .menu-toggle {
+        display: flex;
+      }
+
+      /* Center the logo horizontally */
+      .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 60vw; /* responsive max width */
+        font-size: 1.25rem; /* slightly smaller on small screens */
+      }
+
+      /* nav-links slide from right */
+      .nav-links {
+        position: fixed;
+        top: 60px;
+        right: 0;
+        height: calc(100% - 60px);
+        width: 220px;
+        background-color: var(--nav-bg);
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+        box-shadow: -2px 0 10px var(--shadow);
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        z-index: 1500;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+
+      /* Adjust nav-link font size for smaller screens */
+      .nav-links a {
+        font-size: 1rem;
+        white-space: nowrap;
+      }
+
+      /* Ensure dark mode toggle stays visible and aligned */
+      .dark-mode-toggle {
+        margin-left: 0.5rem;
+        font-size: 0.9rem;
+        flex-shrink: 0;
+      }
+    }
+
+    /* Dark Mode Toggle Button */
+    .dark-mode-toggle {
+      background: var(--btn-bg);
+      color: var(--btn-color);
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-size: 0.9rem;
+      user-select: none;
+      margin-left: 1rem;
+      flex-shrink: 0;
+      white-space: nowrap;
+      min-width: 90px;
+      text-align: center;
+    }
+    .dark-mode-toggle:hover,
+    .dark-mode-toggle:focus {
+      background-color: var(--btn-hover-bg);
+      outline: none;
+    }
+
+    /* Main Content and Article */
+    main {
+      margin-top: 2rem;
+    }
+
+    article {
+      background-color: var(--card-bg);
+      box-shadow: 0 2px 8px var(--shadow);
+      border-radius: 12px;
+      overflow: hidden;
+      padding: 2rem;
+      margin-bottom: 3rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    article h1, article h2, article h3 {
+      font-weight: 700;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: var(--accent);
+    }
+    article h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    article p {
+      font-weight: 400;
+      margin-bottom: 1rem;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 100%;
+      line-height: 1.7;
+    }
+    article p strong {
+      color: var(--text);
+    }
+    article ul {
+      list-style: disc inside;
+      margin-bottom: 1rem;
+      color: var(--text-secondary);
+    }
+    article ul li {
+      margin-bottom: 0.5rem;
+    }
+    article img {
+      margin: 1.5rem 0;
+      border-radius: 12px;
+    }
+
+    /* Centered Hero text */
+    #home article {
+      text-align: center;
+    }
+    #home article p {
+      max-width: 600px;
       margin-left: auto;
       margin-right: auto;
     }
-    .btn-primary {
-      background-color: #123456;
-      color: #fff;
-      padding: 14px 30px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(18, 52, 86, 0.4);
-      transition: background-color 0.3s ease;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .btn-primary:hover {
-      background-color: #0d2640;
-    }
 
-    /* Blockquote */
-    blockquote {
-      margin: 30px 0;
-      font-style: italic;
-      border-left: 4px solid #a3b8d1;
-      padding-left: 15px;
-      color: #4a5f7a;
-    }
-    p {
-      margin-bottom: 1.4rem;
-    }
-
-    /* About Preview Section */
-    .about-preview {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-      padding-top: 20px;
-      border-top: 1px solid #e6e4e1;
-    }
-    .about-preview img {
-      width: 180px;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(31, 42, 68, 0.1);
-      object-fit: cover;
-      flex-shrink: 0;
-    }
-    .about-text {
-      flex: 1;
-    }
-    .about-text h2 {
-      font-family: 'Merriweather', serif;
+    /* Typography - Bold sections */
+    .highlight {
       font-weight: 700;
-      font-size: 2rem;
-      margin-bottom: 0.8rem;
-      color: #123456;
-    }
-    .about-text p {
-      font-size: 1.1rem;
-      color: #2c3e5e;
+      color: var(--accent);
     }
 
-    /* Contact Call-to-action */
-    .contact-cta {
-      background-color: #123456;
-      color: #f9f6f2;
-      padding: 30px 25px;
-      border-radius: 12px;
+    /* Calls to Action */
+    .cta {
+      margin: 2rem 0 0;
       text-align: center;
-      font-size: 1.3rem;
+    }
+    .btn {
+      background: var(--btn-bg);
+      color: var(--btn-color);
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
       font-weight: 700;
-      box-shadow: 0 6px 16px rgba(18, 52, 86, 0.5);
-      margin-top: 20px;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 10px var(--shadow);
+      user-select: none;
     }
-    .contact-cta a {
-      color: #e94e77;
-      text-decoration: none;
-      margin-left: 10px;
-      font-weight: 800;
-    }
-    .contact-cta a:hover {
-      text-decoration: underline;
+    .btn:hover,
+    .btn:focus {
+      background-color: var(--btn-hover-bg);
+      outline: none;
+      box-shadow: 0 6px 12px var(--shadow);
     }
 
     /* Footer */
     footer {
-      margin-top: 60px;
-      font-size: 0.9rem;
-      color: #7a8da6;
       text-align: center;
-      border-top: 1px solid #e6e4e1;
-      padding-top: 20px;
-      font-family: 'Open Sans', sans-serif;
+      padding: 2rem 1rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
     }
 
-    /* Responsive */
-    @media (max-width: 700px) {
-      body {
-        padding: 20px 10px;
-      }
-      main {
-        padding: 30px 25px 40px 25px;
-      }
-      .hero h1 {
-        font-size: 2.4rem;
-      }
-      .about-preview {
-        flex-direction: column;
-        text-align: center;
-        gap: 15px;
-      }
-      .about-preview img {
-        width: 90%;
-        max-width: 300px;
-        margin: 0 auto;
-      }
-      .about-text h2 {
-        font-size: 1.7rem;
-      }
-      .contact-cta {
-        font-size: 1.1rem;
+    /* Interactive Elements - Poll */
+    .poll {
+      background-color: var(--bg);
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
+      margin-top: 2rem;
+      max-width: 450px;
+      user-select: none;
+    }
+    .poll h3, .poll h4 {
+      margin: 0 0 1rem;
+      color: var(--accent);
+    }
+    .poll label, .poll .poll-option label {
+      display: block;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .poll input[type="radio"] {
+      margin-right: 0.7rem;
+      cursor: pointer;
+    }
+    .poll button {
+      margin-top: 1rem;
+      background-color: var(--btn-bg);
+      color: var(--btn-color);
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    .poll button:hover,
+    .poll button:focus {
+      background-color: var(--btn-hover-bg);
+      outline: none;
+    }
+    .poll .result {
+      margin-top: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* Typography for code snippets */
+    pre {
+      background-color: var(--code-bg);
+      color: var(--text);
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Responsive fixes for images inside posts */
+    .post-image {
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      width: 100%;
+      height: auto;
+    }
+
+    /* Responsive Grid for main content */
+    .main-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    @media(min-width: 900px) {
+      .main-content {
+        grid-template-columns: 2fr 1fr;
       }
     }
+
+    /* Sidebar styles */
+    aside.sidebar {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px var(--shadow);
+      position: sticky;
+      top: 80px;
+      height: fit-content;
+      /* fix possible overlay problem */
+      z-index: 1000;
+    }
+    .sidebar-widget + .sidebar-widget {
+      margin-top: 2rem;
+    }
+    .sidebar-widget h3 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    /* Subscription form inside .sidebar-widget */
+    form input[type="email"] {
+      font-size: 1rem;
+      padding: 0.6rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+    form button {
+      width: 100%;
+    }
+
+    /* Social links */
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .social-links a {
+      background-color: var(--accent);
+      color: var(--btn-color);
+      padding: 0.6rem 0.8rem;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    .social-links a:hover {
+      background-color: var(--accent-hover);
+    }
+
+    /* Fix for sticky sidebar on smaller devices that might block nav */
+    @media(max-width: 720px) {
+      aside.sidebar {
+        position: static;
+        top: auto;
+        margin-top: 2rem;
+      }
+
+      /* Add bottom margin to main content so nav links remain clickable */
+      main.container.main-content {
+        padding-bottom: 4rem;
+      }
+    }
+
   </style>
 </head>
 <body>
-  <main>
-    <!-- Hero Section -->
-    <section class="hero" aria-label="Introduction and call to action">
-      <h1>Empowering Growth & Purpose in the BPO Industry</h1>
-      <p>Discover the transformative journey behind every call — where resilience, empathy, and professionalism define success in the fast-paced world of BPO.</p>
-      <a href="#contact" class="btn-primary" role="button">Get in Touch</a>
+  <header>
+    <nav role="navigation" aria-label="Main navigation">
+      <div class="logo" tabindex="0">John Carlo Borja</div>
+
+      <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links" id="primary-menu">
+        <li><a href="#home" tabindex="0">Home</a></li>
+        <li><a href="#about" tabindex="0">About</a></li>
+        <li><a href="#blog" tabindex="0">Blog</a></li>
+        <li><a href="#contact" tabindex="0">Contact</a></li>
+      </ul>
+
+      <button class="dark-mode-toggle" aria-label="Toggle dark mode" tabindex="0">Dark Mode</button>
+    </nav>
+  </header>
+
+  <main class="container main-content">
+    <section id="home" tabindex="0" aria-label="Hero Section">
+      <article class="blog-post">
+        <h1>Life as a Filipino College Student</h1>
+        <p>Follow my journey through college life with all its challenges, growth, and memorable moments.</p>
+        <div class="cta">
+          <a href="#subscribe" class="btn">Subscribe to My Blog</a>
+        </div>
+      </article>
     </section>
 
-    <blockquote>“Working in the BPO industry has taught me more than just how to handle calls or meet KPIs—it has shown me the value of communication, resilience, and empathy on a whole new level.”</blockquote>
+    <section id="blog" tabindex="0" aria-label="Blog Articles">
+      <article class="blog-post" aria-label="Blog post: COME TO SCHOOL WITH ME!">
+        <h2>COME TO SCHOOL WITH ME!</h2>
+        <p><em><i class="far fa-calendar"></i> May 5, 2025</em> &nbsp; &nbsp; <em><i class="far fa-user"></i> John Carlo Borja</em> &nbsp; &nbsp; <em><i class="far fa-folder"></i> College Life</em></p>
 
-    <!-- Main Content Paragraphs -->
-    <p>Every day, we navigate a fast-paced environment, balancing the expectations of clients with the needs of customers. At times, it can be exhausting—especially when dealing with irate callers, shifting schedules, or performance targets. But what often goes unnoticed is the strength it takes to stay calm under pressure, to find solutions on the spot, and to keep showing up with professionalism and grace.</p>
+        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=900&q=80" alt="College campus scene with students" loading="lazy" />
 
-    <p>One of the most valuable lessons I’ve learned is that behind every call or chat, there’s a person—someone who might be frustrated, confused, or just looking for help. And on the other end, there's us—agents who not only provide solutions but often offer the first moment of human understanding that customer experiences that day.</p>
+        <p>Hello, dear readers! Today, I want to give you a glimpse into my daily life as a college student. Lately, things have been quite stressful and exhausting, but sharing my experiences with you helps me stay grounded—and hopefully, it will resonate with some of you too.</p>
+        <h3>My Morning Routine: Starting Early Despite the Challenges</h3>
+        <p>I usually have afternoon classes starting at 1 PM. Sometimes, I struggle to wake up early because of staying up late either working on assignments or just fixing things around my schedule. But even on those rough nights, I manage to get up around 7 AM.</p>
+        <p>My mornings are pretty simple, but I want to share this little routine with you: first thing after waking up, I drink a glass of water to refresh myself. Then, I do some light exercises to get energized. After that, I check my group chats for any announcements from my professors or classmates.</p>
+        <p>Breakfast varies—it depends on my mood and energy. Sometimes I cook at home, but often I buy breakfast from the many street vendors near our place. It's convenient and affordable, especially on days when I feel too tired to cook.</p>
 
-    <p>The BPO industry may not always get the recognition it deserves, but those of us in it know the truth: it builds skills that go far beyond the workplace. It teaches discipline, teamwork, emotional intelligence, and how to stay composed even when things feel chaotic.</p>
+        <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=900&q=80" alt="Student preparing for school" loading="lazy" />
 
-    <p>For me, this career path has become more than just a job—it’s a journey of growth. It’s taught me how to handle pressure, appreciate people from all walks of life, and most importantly, value my own voice.</p>
+        <h3>Preparing for School: Small Essentials and Big Decisions</h3>
+        <p>Getting ready for school always takes a bit of mental prep too. I carefully pick my outfit for the day—usually something comfortable because sweating is inevitable under the sun and with all the walking involved.</p>
+        <p>My usual commute involves a walk to the HBC jeepney stop, which takes me directly to TCU. This walk doubles as part of my exercise, so I don't mind it. In my bag, I keep the essentials: a pen, extra clothes, and handkerchiefs to wipe off sweat. Staying hydrated and bringing a small fan during the hot midday classes is a must!</p>
 
-    <!-- About Preview Section -->
-    <section class="about-preview" aria-label="About preview with photo and intro">
-      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=400&q=80" alt="Person working with headset in BPO industry" />
-      <div class="about-text">
-        <h2>About This Journey</h2>
-        <p>Behind every interaction lies a story of compassion, skill, and determination. This narrative reflects the real challenges and triumphs of working in an industry that values human connection as much as efficiency.</p>
+        <div class="poll" role="form" aria-live="polite" aria-atomic="true" aria-relevant="text" aria-describedby="poll-desc" tabindex="0">
+          <h3 id="poll-desc">What's in your school bag?</h3>
+          <label>
+            <input type="radio" name="school-bag" value="basics" />
+            Just the basics (notebooks, pens)
+          </label>
+          <label>
+            <input type="radio" name="school-bag" value="everything" />
+            Everything including laptop, tablet, etc.
+          </label>
+          <label>
+            <input type="radio" name="school-bag" value="minimal" />
+            Minimal - I prefer digital notes
+          </label>
+          <label>
+            <input type="radio" name="school-bag" value="survival-kit" />
+            Survival kit (food, extra clothes, umbrella)
+          </label>
+          <button id="poll-submit" aria-controls="poll-results">Vote</button>
+          <p id="poll-results" class="result" aria-live="polite"></p>
+        </div>
+
+        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80" alt="Students socializing at campus" loading="lazy" />
+
+        <h3>At School: Learning, 
+
+        <!-- Add rest of your blog post content here -->
+      </article>
+    </section>
+
+    <!-- Example aside using your sidebar class so it is styled -->
+    <aside class="sidebar" aria-label="Sidebar with subscription and updates">
+      <div class="sidebar-widget" id="subscribe">
+        <h3>Stay Updated!</h3>
+        <form>
+          <input type="email" placeholder="Enter your email" aria-label="Email address" required />
+          <button type="submit">Subscribe</button>
+        </form>
       </div>
-    </section>
-
-    <!-- Contact Call-to-action -->
-    <section class="contact-cta" id="contact" aria-label="Contact call to action">
-      Ready to start your own journey of growth in the BPO industry? <a href="mailto:margaretrico@gmail.com">Contact us today</a> and let’s connect!
-    </section>
-
-    <footer>© 2024 Margaret Rico. All rights reserved.</footer>
+      <!-- More widgets can go here -->
+    </aside>
   </main>
+
+  <!-- You may add footer here -->
+
+  <script>
+    // Mobile menu toggle script
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+
+    // Dark mode toggle script
+    const darkModeToggle = document.querySelector('.dark-mode-toggle');
+    darkModeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+    });
+  </script>
 </body>
 </html>
